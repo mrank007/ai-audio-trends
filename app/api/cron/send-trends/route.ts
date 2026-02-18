@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { getTrends } from "@/lib/groq";
-import { sendTrendsEmail } from "@/lib/email";
+import { getTrends } from "../../../../lib/groq";
+import { sendTrendsEmail } from "../../../../lib/email";
 
 // Vercel will call this endpoint on the cron schedule in vercel.json
 export async function GET(request: Request) {
