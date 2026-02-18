@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { NextResponse } from "next/server";
 import { getTrends } from "../../../../lib/groq";
 import { sendTrendsEmail } from "../../../../lib/email";
