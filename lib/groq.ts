@@ -27,7 +27,7 @@ export async function getTrends(): Promise<string> {
   });
 
   const searchResults = await searchTavily(
-    "AI artificial intelligence audio production music technology trends 2025"
+    `AI audio production music technology news ${new Date().toLocaleDateString("en-AU", { month: "long", year: "numeric" })}`
   );
 
   const prompt = `Today is ${today}.
