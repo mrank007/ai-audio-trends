@@ -6,7 +6,6 @@ import { sendTrendsEmail } from "../../../../lib/email";
 
 // Vercel will call this endpoint on the cron schedule in vercel.json
 export async function GET(request: Request) {
-  // Protect the endpoint so only Vercel's cron runner can trigger it
  
 
   try {
