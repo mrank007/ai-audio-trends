@@ -32,7 +32,7 @@ export async function sendTrendsEmail(htmlBody: string): Promise<void> {
 
   const { error } = await resend.emails.send({
     from: "AI Audio Trends <onboarding@resend.dev>",  // Change to your verified domain later
-    to: process.env.RECIPIENT_EMAIL!.
+    to: process.env.RECIPIENT_EMAIL!,
     subject: `🎧 AI Audio Production Trends — ${today}`,
     html: fullHtml,
   });
