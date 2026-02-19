@@ -2,7 +2,7 @@
   "crons": [
     {
       "path": "/api/cron/send-trends",
-      "schedule": "0 22 * * *"
+      "schedule": "0 22 * * 1-5"
     }
   ]
 }
