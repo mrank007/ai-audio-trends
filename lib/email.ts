@@ -3,13 +3,13 @@ import { Resend } from "resend";
 const resend = new Resend(process.env.RESEND_API_KEY ?? "placeholder");
 
 export async function sendTrendsEmail(htmlBody: string): Promise<void> {
-  const today = new Date().toLocaleDateString("en-AU", {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-    timeZone: "Australia/Hobart",
-  });
-
+const today = new Date().toLocaleDateString("en-AU", {
+  weekday: "long",
+  month: "short",
+  day: "numeric",
+  year: "numeric",
+  timeZone: "Australia/Hobart",
+});
   const fullHtml = `<!DOCTYPE html>
 <html lang="en">
 <head>
