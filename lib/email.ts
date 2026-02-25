@@ -2,14 +2,55 @@ import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY ?? "placeholder");
 
+const dayThemes: Record<
+  string,
+  { gradient: string; accent: string; title: string }
+> = {
+  Monday: {
+    gradient: "135deg,#1a0533 0%,#0d1f4d 50%,#001a33 100%",
+    accent: "#ff2d87",
+    title: "#ff6b35",
+  },
+  Tuesday: {
+    gradient: "135deg,#003322 0%,#004d2b 50%,#001a0d 100%",
+    accent: "#00e676",
+    title: "#69f0ae",
+  },
+  Wednesday: {
+    gradient: "135deg,#1a1a00 0%,#2d2d00 50%,#1a0d00 100%",
+    accent: "#ffd600",
+    title: "#ffab00",
+  },
+  Thursday: {
+    gradient: "135deg,#001a33 0%,#003366 50%,#001a4d 100%",
+    accent: "#40c4ff",
+    title: "#80d8ff",
+  },
+  Friday: {
+    gradient: "135deg,#330011 0%,#4d0022 50%,#1a0011 100%",
+    accent: "#ff1744",
+    title: "#ff6b6b",
+  },
+};
+
 export async function sendTrendsEmail(htmlBody: string): Promise<void> {
-const today = new Date().toLocaleDateString("en-AU", {
-  weekday: "long",
-  month: "short",
-  day: "numeric",
-  year: "numeric",
-  timeZone: "Australia/Hobart",
-});
+  const now = new Date();
+
+  const dayOfWeek = now.toLocaleDateString("en-AU", {
+    weekday: "long",
+    timeZone: "Australia/Hobart",
+  });
+
+  const today = now.toLocaleDateString("en-AU", {
+    weekday: "long",
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    timeZone: "Australia/Hobart",
+  });
+
+  const theme = dayThemes[dayOfWeek] ?? dayThemes["Monday"];
+
   const fullHtml = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,11 +66,11 @@ const today = new Date().toLocaleDateString("en-AU", {
 
           <!-- HEADER -->
           <tr>
-            <td style="background:linear-gradient(135deg,#1a0533 0%,#0d1f4d 50%,#001a33 100%);border-radius:16px 16px 0 0;padding:36px 36px 0 36px;">
-              <div style="font-size:11px;font-weight:800;letter-spacing:4px;text-transform:uppercase;margin-bottom:10px;color:#ff6b35;">Daily Briefing</div>
+            <td style="background:linear-gradient(${theme.gradient});border-radius:16px 16px 0 0;padding:36px 36px 0 36px;">
+              <div style="font-size:11px;font-weight:800;letter-spacing:4px;text-transform:uppercase;margin-bottom:10px;color:${theme.title};">Daily Briefing</div>
               <h1 style="margin:0 0 8px;font-size:32px;font-weight:900;color:#ffffff;line-height:1.1;letter-spacing:-0.5px;">
                 🎧 AI Audio<br>
-                <span style="color:#ff2d87;">Trends Report</span>
+                <span style="color:${theme.accent};">Trends Report</span>
               </h1>
               <p style="margin:0 0 28px;color:#8899cc;font-size:14px;">${today}</p>
 
@@ -37,8 +78,8 @@ const today = new Date().toLocaleDateString("en-AU", {
               <svg width="100%" height="28" viewBox="0 0 400 28" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
                 <defs>
                   <linearGradient id="wg" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" style="stop-color:#ff6b35"/>
-                    <stop offset="50%" style="stop-color:#ff2d87"/>
+                    <stop offset="0%" style="stop-color:${theme.title}"/>
+                    <stop offset="50%" style="stop-color:${theme.accent}"/>
                     <stop offset="100%" style="stop-color:#b44fff"/>
                   </linearGradient>
                 </defs>
@@ -122,11 +163,11 @@ const today = new Date().toLocaleDateString("en-AU", {
 
           <!-- FOOTER -->
           <tr>
-            <td style="background:linear-gradient(135deg,#1a0533 0%,#0d1f4d 100%);border-radius:0 0 16px 16px;padding:20px 32px;text-align:center;">
+            <td style="background:linear-gradient(${theme.gradient});border-radius:0 0 16px 16px;padding:20px 32px;text-align:center;">
               <p style="margin:0 0 8px;color:#8899cc;font-size:11px;letter-spacing:2px;text-transform:uppercase;">AI Audio Trends Bot</p>
               <p style="margin:0;color:#445577;font-size:11px;">
                 Powered by Groq &amp; Tavily · Delivered by Vercel ·
-                <a href="https://oistudios.com.au" style="color:#ff2d87;text-decoration:none;">oistudios.com.au</a>
+                <a href="https://oistudios.com.au" style="color:${theme.accent};text-decoration:none;">oistudios.com.au</a>
               </p>
             </td>
           </tr>
