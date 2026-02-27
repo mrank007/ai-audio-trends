@@ -7,29 +7,29 @@ const dayThemes: Record<
   { gradient: string; accent: string; title: string }
 > = {
   Monday: {
-    gradient: "135deg,#1a0533 0%,#0d1f4d 50%,#001a33 100%",
-    accent: "#ff2d87",
-    title: "#ff6b35",
+    gradient: "135deg,#0a0a0a 0%,#1a1400 50%,#0a0a0a 100%",
+    accent: "#ffd700",
+    title: "#c9a800",
   },
   Tuesday: {
-    gradient: "135deg,#003322 0%,#004d2b 50%,#001a0d 100%",
-    accent: "#00e676",
-    title: "#69f0ae",
+    gradient: "135deg,#0a0a0a 0%,#1f1a00 50%,#0a0a0a 100%",
+    accent: "#e6c200",
+    title: "#b8960c",
   },
   Wednesday: {
-    gradient: "135deg,#1a1a00 0%,#2d2d00 50%,#1a0d00 100%",
-    accent: "#ffd600",
-    title: "#ffab00",
+    gradient: "135deg,#111111 0%,#1a1600 50%,#222222 100%",
+    accent: "#ffc107",
+    title: "#d4a017",
   },
   Thursday: {
-    gradient: "135deg,#001a33 0%,#003366 50%,#001a4d 100%",
-    accent: "#40c4ff",
-    title: "#80d8ff",
+    gradient: "135deg,#0d0d0d 0%,#1c1800 50%,#333333 100%",
+    accent: "#ffca28",
+    title: "#b8860b",
   },
   Friday: {
-    gradient: "135deg,#330011 0%,#4d0022 50%,#1a0011 100%",
-    accent: "#ff1744",
-    title: "#ff6b6b",
+    gradient: "135deg,#0a0a0a 0%,#241e00 50%,#1a1a1a 100%",
+    accent: "#ffd700",
+    title: "#daa520",
   },
 };
 
@@ -58,29 +58,29 @@ export async function sendTrendsEmail(htmlBody: string): Promise<void> {
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>AI Audio Trends</title>
 </head>
-<body style="margin:0;padding:0;background:#0d0d1a;font-family:'Helvetica Neue',Arial,sans-serif;">
-  <table width="100%" cellpadding="0" cellspacing="0" style="background:#0d0d1a;padding:32px 16px;">
+<body style="margin:0;padding:0;background:#0a0a0a;font-family:'Helvetica Neue',Arial,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#0a0a0a;padding:32px 16px;">
     <tr>
       <td align="center">
         <table width="620" cellpadding="0" cellspacing="0" style="max-width:620px;width:100%;">
 
           <!-- HEADER -->
           <tr>
-            <td style="background:linear-gradient(${theme.gradient});border-radius:16px 16px 0 0;padding:36px 36px 0 36px;">
+            <td style="background:linear-gradient(${theme.gradient});border-radius:16px 16px 0 0;padding:36px 36px 0 36px;border:1px solid #2a2400;border-bottom:none;">
               <div style="font-size:11px;font-weight:800;letter-spacing:4px;text-transform:uppercase;margin-bottom:10px;color:${theme.title};">Daily Briefing</div>
               <h1 style="margin:0 0 8px;font-size:32px;font-weight:900;color:#ffffff;line-height:1.1;letter-spacing:-0.5px;">
                 🎧 AI Audio<br>
                 <span style="color:${theme.accent};">Trends Report</span>
               </h1>
-              <p style="margin:0 0 28px;color:#8899cc;font-size:14px;">${today}</p>
+              <p style="margin:0 0 28px;color:#888888;font-size:14px;">${today}</p>
 
               <!-- WAVEFORM -->
               <svg width="100%" height="28" viewBox="0 0 400 28" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
                 <defs>
                   <linearGradient id="wg" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" style="stop-color:${theme.title}"/>
-                    <stop offset="50%" style="stop-color:${theme.accent}"/>
-                    <stop offset="100%" style="stop-color:#b44fff"/>
+                    <stop offset="0%" style="stop-color:#c9a800"/>
+                    <stop offset="50%" style="stop-color:#ffd700"/>
+                    <stop offset="100%" style="stop-color:#888888"/>
                   </linearGradient>
                 </defs>
                 <rect x="0" y="11" width="3" height="6" rx="1" fill="url(#wg)" opacity="0.4"/>
@@ -156,16 +156,16 @@ export async function sendTrendsEmail(htmlBody: string): Promise<void> {
 
           <!-- TRENDS CONTENT -->
           <tr>
-            <td style="background:#111128;padding:24px 32px;">
+            <td style="background:#111111;padding:24px 32px;color:#e0c050;border-left:1px solid #2a2400;border-right:1px solid #2a2400;">
               ${htmlBody}
             </td>
           </tr>
 
           <!-- FOOTER -->
           <tr>
-            <td style="background:linear-gradient(${theme.gradient});border-radius:0 0 16px 16px;padding:20px 32px;text-align:center;">
-              <p style="margin:0 0 8px;color:#8899cc;font-size:11px;letter-spacing:2px;text-transform:uppercase;">AI Audio Trends Bot</p>
-              <p style="margin:0;color:#445577;font-size:11px;">
+            <td style="background:linear-gradient(${theme.gradient});border-radius:0 0 16px 16px;padding:20px 32px;text-align:center;border:1px solid #2a2400;border-top:none;">
+              <p style="margin:0 0 8px;color:#888888;font-size:11px;letter-spacing:2px;text-transform:uppercase;">AI Audio Trends Bot</p>
+              <p style="margin:0;color:#555555;font-size:11px;">
                 Powered by Groq &amp; Tavily · Delivered by Vercel ·
                 <a href="https://oistudios.com.au" style="color:${theme.accent};text-decoration:none;">oistudios.com.au</a>
               </p>
